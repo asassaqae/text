@@ -13,3 +13,16 @@ Session(app)
 
 cur = sqlite3.connect("users.db")
 db = cur.cursor()
+
+@app.route("/")
+def index():
+    if not session.get("name"):
+        return redirect("/login")
+    return render_template("index.html")
+
+
+@app.route("/login", methods=["GET", "POST  "])
+def login():
+    if request.method == "GET":
+        return render_template("logint.html")
+    ...
